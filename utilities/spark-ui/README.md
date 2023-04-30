@@ -43,7 +43,8 @@ export EXECUTOR_LOG_PATH=https://s3.console.aws.amazon.com/s3/object/${S3_BUCKET
 ```
 
 3. Set your AWS access key and secret key, and optionally session token.
-
+  (This is an optional step if you are using EMR on EC2 single node master as Spark UI host. Host default credentials will be used)
+  
 ```shell
 export AWS_ACCESS_KEY_ID="ASIAxxxxxxxxxxxx"
 export AWS_SECRET_ACCESS_KEY="yyyyyyyyyyyyyyy"
@@ -60,6 +61,16 @@ docker run --rm -it \
     -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
     emr/spark-ui
 ```
+
+## Option for multiple UI's on EMR Master (Port 18081 used as example):
+
+```shell
+docker run --rm -itd \
+    -p 18083:18080 -p 9978:9977 \
+    -e SPARK_HISTORY_OPTS="-Dspark.history.fs.logDirectory=$LOG_DIR -Dspark.hadoop.fs.s3.customAWSCredentialsProvider=com.amazonaws.auth.DefaultAWSCredentialsProviderChain" \
+    -e AWS_REGION=us-east-1 \
+    emr/spark-ui
+    ```
 
 5. Access the Spark UI via http://localhost:18080
 
