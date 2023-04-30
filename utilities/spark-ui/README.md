@@ -10,7 +10,7 @@ You can use this Docker image to start the Apache Spark History Server (SHS) and
 
 1. Clone this repository and change into the `utilities/spark-ui` directory.
 ```shell
-git clone https://github.com/aws-samples/emr-serverless-samples.git
+git clone https://github.com/knkarthik01/emr-serverless-samples.git
 cd emr-serverless-samples/utilities/spark-ui/
 ```
 2. Login to ECR
