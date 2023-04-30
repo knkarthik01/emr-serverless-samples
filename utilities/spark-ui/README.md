@@ -12,6 +12,7 @@ You can use this Docker image to start the Apache Spark History Server (SHS) and
 ```shell
 git clone https://github.com/knkarthik01/emr-serverless-samples.git
 cd emr-serverless-samples/utilities/spark-ui/
+Replace your bucket name in py_web_server.py file. This will host a web service within docker for S3 executor log files.
 ```
 2. Login to ECR
 ```shell
