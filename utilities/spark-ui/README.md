@@ -62,7 +62,7 @@ docker run --rm -it \
     emr/spark-ui
 ```
 
-## Option for multiple UI's on EMR Master (Port 18081 used as example):
+### Option for multiple UI's on EMR Master (Port 18081 used as example):
 
 ```shell
 docker run --rm -itd \
@@ -70,7 +70,7 @@ docker run --rm -itd \
     -e SPARK_HISTORY_OPTS="-Dspark.history.fs.logDirectory=$LOG_DIR -Dspark.hadoop.fs.s3.customAWSCredentialsProvider=com.amazonaws.auth.DefaultAWSCredentialsProviderChain" \
     -e AWS_REGION=us-east-1 \
     emr/spark-ui
-    ```
+```
 
 5. Access the Spark UI via http://localhost:18080
 
