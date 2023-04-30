@@ -1,10 +1,12 @@
 # Spark UI
 
-You can use this Docker image to start the Apache Spark History Server (SHS) and view the Spark UI locally.
+You can use this Docker image to start the Apache Spark History Server (SHS) and view the Spark UI locally or using single node EMR on EC2 cluster.
+
 
 ## Pre-requisite
 
 - Install Docker
+- EMR on EC2 cluster (optional, if local is not used)
 
 ## Build Docker image
 
