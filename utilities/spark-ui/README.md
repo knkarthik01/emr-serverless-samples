@@ -72,7 +72,7 @@ docker run --rm -itd \
     emr/spark-ui
 ```
 
-5. Access the Spark UI via http://localhost:18080
+5. Access the Spark UI via http://localhost:18080 OR http://<EMR_MASTER_IP>:<PORT_USED>
 
 ## Troubleshooting
 
