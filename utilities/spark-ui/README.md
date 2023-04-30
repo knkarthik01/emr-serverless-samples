@@ -29,7 +29,7 @@ You can use a pair of AWS access key and secret key, or temporary AWS credential
 1. Set `LOG_DIR` to the location of your Spark eventlogs.
 
 ```shell
-export S3_BUCKET="Replace with your Bucket Name. ex. bucker1"
+export S3_BUCKET="Replace with your Bucket Name. ex. bucket1"
 export APPLICATION_ID="Replace with your EMR Serverless Application Id. ex. 00f7etp6vmd8cb09"
 export JOB_RUN_ID="Replace with your EMR Serverless JobRunId. ex. 00f7eu9k4bhk1409"
 export LOG_DIR=s3://${S3_BUCKET}/logs/applications/$APPLICATION_ID/jobs/$JOB_RUN_ID/sparklogs/
