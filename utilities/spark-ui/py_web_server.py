@@ -7,7 +7,7 @@ import urllib.request,json
 import boto3
 
 #hostName = "ec2-XX-XX-XX-XX.compute-1.amazonaws.com"
-hostName = "<your_host>"
+hostName = "0.0.0.0"
 serverPort = 9977
 bucket = "<your_bucket>"
 client = boto3.client('s3')
