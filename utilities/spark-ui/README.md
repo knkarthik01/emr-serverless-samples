@@ -16,7 +16,7 @@ git clone https://github.com/knkarthik01/emr-serverless-samples.git
 cd emr-serverless-samples/utilities/spark-ui/
 #  Edit py_web_server.py file locally with below changes. This will host a web service for S3 executor log files.
 # 1/ <Bucket Name> with your bucket
-# 2/ Point to your SSL certs or create one using `openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem`
+# 2/ Point to your SSL certs or create one using this command "openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem"
 ```
 2. Login to ECR
 ```shell
