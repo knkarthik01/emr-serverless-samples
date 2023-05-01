@@ -3,7 +3,7 @@ import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib.parse import urlparse
 import urllib.request,json
-
+import ssl
 import boto3
 
 #hostName = "ec2-XX-XX-XX-XX.compute-1.amazonaws.com"
@@ -23,8 +23,11 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
 if __name__ == "__main__":
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.load_cert_chain(certfile='cert.pem', keyfile='key.pem')
     webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
+    webServer.socket = context.wrap_socket(webServer.socket, server_side=True)
+    print("Server started https://%s:%s" % (hostName, serverPort))
 
     try:
         webServer.serve_forever()
