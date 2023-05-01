@@ -9,7 +9,17 @@ RUN ln -s /usr/share/aws/aws-java-sdk/aws-java-sdk-bundle-*.jar /usr/lib/spark/j
 RUN ln -s /usr/share/aws/emr/emrfs/lib/emrfs-hadoop-assembly-*.jar /usr/lib/spark/jars/
 
 ADD sparkHistory.sh /tmp/sparkHistory.sh
-ADD py_web_server.sh /tmp/py_web_server.sh
+#ADD py_web_server.py /tmp/py_web_server.py
+RUN chmod +x /tmp/sparkHistory.sh
+#RUN chmod +x /tmp/py_web_server.py
+
+RUN echo $'\n\
+spark.eventLog.enabled                      true\n\
+spark.history.ui.port                       18080\n\
+spark.history.custom.executor.log.url       https://<YOUR_MASTER_ID>:9977/spark/logs/applications/00f7etp6vmd8cb09/jobs/00f7eu9k4bhk1409/{{CONTAINER_ID}}/{{FILE_NAME}}.gz\n\
+' > /etc/spark/conf/spark-defaults.conf
+
+EXPOSE 9977
 
 RUN mkdir /mnt/s3 \
     && chown spark:spark /mnt/s3
