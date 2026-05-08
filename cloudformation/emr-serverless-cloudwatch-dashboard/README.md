@@ -18,7 +18,7 @@ Follow along below to see how to get started or see a full demo in the [walkthro
 2. Create a new stack by choosing: `Create Stack`
 3. Choose the option `Upload a template file` and upload the `emr_serverless_cloudwatch_dashboard.yaml` template
 4. In the next page, add a Stack name for the stack.
-5. In the Parameters section, put in the `Application ID` of the EMR Serverless application you want to monitor
+5. In the Parameters section, put in the `Application ID` and `Application Name` of the EMR Serverless application you want to monitor
 6. Choose `Create Stack` in the final page.
 
 **From the CLI:**
@@ -28,8 +28,9 @@ Alternatively, you can also deploy this dashboard using the CLI:
 ```
 aws cloudformation create-stack --region <region> \
     --stack-name emr-serverless-dashboard \
-    --template-body <file:///path/emr_serverless_cloudwatch_dashboard.yaml> \
-    --parameters ParameterKey=ApplicationID,ParameterValue=<Application Id>
+    --template-body file:///path/emr_serverless_cloudwatch_dashboard.yaml \
+    --parameters ParameterKey=ApplicationID,ParameterValue=<Application Id> \
+                 ParameterKey=ApplicationName,ParameterValue=<Application Name>
 ```
 
 Once the stack is created, you'll have a new CloudWatch Dashboard with the name `emr-serverless-dashboard-<APPLICATION_ID>` under Dashboards in the CloudWatch console at https://console.aws.amazon.com/cloudwatch/. 
@@ -45,6 +46,7 @@ The sample Cloudwatch Dashboard provides the following functionality:
   -  Point in time view of Available Workers (Drivers + Executors)
   -  Point in time view of Running Drivers
   -  Point in time view of Running Executors
+  -  Point in time view of Job Worker Metrics (Drivers + Executors)
  
  ![Screenshot of snapshot metrics for available workers and running Drivers and Executors](images/snapshot_metrics.png "Capacity Utilization Snapshot view")
 
@@ -92,13 +94,32 @@ The sample Cloudwatch Dashboard provides the following functionality:
 
 ![Screenshot of Job Metrics](images/job-metrics-breakdown.png "Job Metrics")
 
+- Job Worker Metrics - Driver
+    - Timeline view of CPU Allocated and Used by each Job
+    - Timeline view of Memory Allocated and Used by each Job
+    - Timeline view of Storage Allocated and Used by each Job
+    - Timeline view of Storage Read Bytes by each Job
+    - Timeline view of Storage Write Bytes by each Job
+
+![Screenshot of Job Worker Metrics - Driver](images/job_worker_metrics_Driver.jpg "Job Worker Metrics - Driver")
+
+- Job Worker Metrics - Executor
+    - Timeline view of CPU Allocated and Used by each Job
+    - Timeline view of Memory Allocated and Used by each Job
+    - Timeline view of Storage Allocated and Used by each Job
+    - Timeline view of Storage Read Bytes by each Job
+    - Timeline view of Storage Write Bytes by each Job
+
+![Screenshot of Job Worker Metrics - Executor](images/job_worker_metrics_Executor.jpeg "Job Worker Metrics - Executor")
+
 ## Example Walkthrough
 
 Let's take a quick look and see how we can use the dashboard to optimize our EMR Serverless applications.
 
 In this example, we'll start an application with a limited set of pre-initialized capacity and run jobs that both fit and exceed that capacity and see what happens.
 
-> **Note**: EMR Serverless sends metrics to Amazon CloudWatch every 1 minute, so you may see different behavior depending on how quickly you run the commands.
+> [!NOTE]
+> EMR Serverless sends metrics to Amazon CloudWatch every 1 minute, so you may see different behavior depending on how quickly you run the commands.
 
 ### Pre-requisites
 
@@ -177,7 +198,8 @@ Using the `APPLICATION_ID` variable above, create the corresponding dashboard.
 aws cloudformation create-stack \
     --stack-name emr-serverless-dashboard \
     --template-body file://emr_serverless_cloudwatch_dashboard.yaml \
-    --parameters ParameterKey=ApplicationID,ParameterValue=$APPLICATION_ID
+    --parameters ParameterKey=ApplicationID,ParameterValue=$APPLICATION_ID \
+                 ParameterKey=ApplicationName,ParameterValue=cloudwatch-dashboard-demo
 ```
 
 Go ahead and open your new dashboard:
