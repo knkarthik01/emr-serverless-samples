@@ -4,7 +4,7 @@ This repository contains example code for getting started with EMR Serverless an
 
 In addition, it provides Container Images for both the Spark History Server and Tez UI in order to debug your jobs.
 
-For full details about using EMR Serverless, please see the [EMR Serverless documentation](https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/emr-serverless.html)..
+For full details about using EMR Serverless, please see the [EMR Serverless documentation](https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/emr-serverless.html)...
 
 ## Pre-Requisites
 
